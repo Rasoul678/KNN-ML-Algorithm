@@ -1,6 +1,7 @@
 import numpy as np
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
@@ -52,6 +53,15 @@ def main():
 
     acc = np.sum(predictions == y_test) / len(y_test)
     print(acc)
+
+    neigh = KNeighborsClassifier(n_neighbors=3)
+    neigh.fit(X_train, y_train)
+    predictions2 = clf.predict(X_test)
+
+    # Evaluate accuracy
+    accuracy = accuracy_score(y_test, predictions2)
+    print(f"Accuracy2: {accuracy:.2f}")
+
 
 if __name__ == "__main__":
     main()
